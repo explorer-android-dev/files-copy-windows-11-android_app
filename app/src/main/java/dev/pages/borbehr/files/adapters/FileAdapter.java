@@ -1,4 +1,4 @@
-package com.windows11.files.adapters;
+package dev.pages.borbehr.files.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,8 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.windows11.files.R;
-import com.windows11.files.models.FileItem;
+import dev.pages.borbehr.files.R;
+import dev.pages.borbehr.files.models.FileItem;
 
 import java.io.File;
 import java.text.SimpleDateFormat;

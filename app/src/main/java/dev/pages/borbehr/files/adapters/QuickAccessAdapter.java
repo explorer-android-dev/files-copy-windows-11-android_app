@@ -1,4 +1,4 @@
-package com.windows11.files.adapters;
+package dev.pages.borbehr.files.adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,8 +9,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.windows11.files.R;
-import com.windows11.files.models.QuickAccessItem;
+import dev.pages.borbehr.files.R;
+import dev.pages.borbehr.files.models.QuickAccessItem;
 
 import java.util.List;
 

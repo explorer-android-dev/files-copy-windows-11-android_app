@@ -1,4 +1,4 @@
-package com.windows11.files.utils;
+package dev.pages.borbehr.files.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;

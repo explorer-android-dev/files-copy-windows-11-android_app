@@ -1,4 +1,4 @@
-package com.windows11.files.utils;
+package dev.pages.borbehr.files.utils;
 
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
@@ -13,8 +13,8 @@ import android.webkit.MimeTypeMap;
 
 import androidx.core.content.FileProvider;
 
-import com.windows11.files.R;
-import com.windows11.files.models.FileItem;
+import dev.pages.borbehr.files.R;
+import dev.pages.borbehr.files.models.FileItem;
 
 import java.io.File;
 import java.io.FileInputStream;
