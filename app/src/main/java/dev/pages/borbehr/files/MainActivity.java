@@ -28,13 +28,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.windows11.files.adapters.FileAdapter;
-import com.windows11.files.adapters.QuickAccessAdapter;
-import com.windows11.files.models.FileItem;
-import com.windows11.files.models.QuickAccessItem;
-import com.windows11.files.utils.ClipboardManager;
-import com.windows11.files.utils.FileManager;
-import com.windows11.files.utils.SearchUtils;
+import dev.pages.borbehr.files.adapters.FileAdapter;
+import dev.pages.borbehr.files.adapters.QuickAccessAdapter;
+import dev.pages.borbehr.files.models.FileItem;
+import dev.pages.borbehr.files.models.QuickAccessItem;
+import dev.pages.borbehr.files.utils.ClipboardManager;
+import dev.pages.borbehr.files.utils.FileManager;
+import dev.pages.borbehr.files.utils.SearchUtils;
 
 import java.io.File;
 import java.io.IOException;
