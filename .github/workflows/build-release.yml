@@ -1,0 +1,97 @@
+name: Build Release APK
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version number (e.g., 1.0.0)'
+        required: true
+        default: '1.0.0'
+
+jobs:
+  build-release:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+          cache: gradle
+
+      - name: Make gradlew executable
+        run: chmod +x gradlew
+
+      - name: Build Release APK
+        run: ./gradlew assembleRelease
+
+      - name: Get APK info
+        id: apk_info
+        run: |
+          APK_PATH="app/build/outputs/apk/release/app-release.apk"
+          APK_SIZE=$(du -h "$APK_PATH" | cut -f1)
+          APK_SHA=$(sha256sum "$APK_PATH" | awk '{print $1}')
+          echo "APK_SIZE=$APK_SIZE" >> $GITHUB_OUTPUT
+          echo "APK_SHA=$APK_SHA" >> $GITHUB_OUTPUT
+          echo "APK_PATH=$APK_PATH" >> $GITHUB_OUTPUT
+          ls -lh "$APK_PATH"
+
+      - name: Upload APK to artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: app-release-${{ github.event.inputs.version }}
+          path: app/build/outputs/apk/release/app-release.apk
+          retention-days: 90
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: app/build/outputs/apk/release/app-release.apk
+          tag_name: v${{ github.event.inputs.version }}
+          name: Release v${{ github.event.inputs.version }}
+          body: |
+            ## 📱 Windows 11 File Explorer for Android
+            
+            ### Version: ${{ github.event.inputs.version }}
+            
+            #### 📦 APK Information
+            - **File Size**: ${{ steps.apk_info.outputs.APK_SIZE }}
+            - **SHA256**: ${{ steps.apk_info.outputs.APK_SHA }}
+            - **Build ID**: ${{ github.run_id }}
+            - **Build Number**: ${{ github.run_number }}
+            
+            #### 📋 Requirements
+            - **Min SDK**: Android 7.0 (API 24)
+            - **Target SDK**: Android 14 (API 34)
+            
+            #### 🚀 Installation
+            
+            ```bash
+            adb install app-release-${{ github.event.inputs.version }}.apk
+            ```
+            
+            Or download and tap on the APK file on your device.
+            
+            #### 📖 Documentation
+            See [README.md](https://github.com/${{ github.repository }}/blob/main/README.md) for feature list and usage guide.
+            
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Post build summary
+        if: always()
+        run: |
+          echo "## ✅ Release Build Summary" >> $GITHUB_STEP_SUMMARY
+          echo "- **Version**: v${{ github.event.inputs.version }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Status**: ${{ job.status }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **APK Size**: ${{ steps.apk_info.outputs.APK_SIZE }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **SHA256**: \`${{ steps.apk_info.outputs.APK_SHA }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "- **Release**: [View on GitHub](https://github.com/${{ github.repository }}/releases/tag/v${{ github.event.inputs.version }})" >> $GITHUB_STEP_SUMMARY

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="12dp">
+
+    <!-- Checkbox для выделения -->
+    <CheckBox
+        android:id="@+id/itemCheckbox"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_alignParentEnd="true"
+        android:button="@null"
+        android:visibility="gone" />
+
+    <!-- Иконка -->
+    <ImageView
+        android:id="@+id/fileIcon"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="8dp"
+        android:scaleType="fitCenter" />
+
+    <!-- Имя файла -->
+    <TextView
+        android:id="@+id/fileName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="middle"
+        android:gravity="center"
+        android:maxLines="2"
+        android:text="File Name"
+        android:textColor="#000000"
+        android:textSize="12sp" />
+</LinearLayout>
