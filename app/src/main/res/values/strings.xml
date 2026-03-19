@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Файлы</string>
+    <string name="permission_required">Требуются разрешения для доступа к файлам</string>
+    <string name="permission_denied">Разрешения не предоставлены</string>
+    <string name="folder">Папка</string>
+    <string name="file">Файл</string>
+    <string name="delete_confirmation">Вы уверены, что хотите удалить %s \"%s\"?</string>
+    <string name="delete">Удалить</string>
+    <string name="cancel">Отмена</string>
+    <string name="open">Открыть</string>
+    <string name="copy">Копировать</string>
+    <string name="move">Переместить</string>
+    <string name="rename">Переименовать</string>
+    <string name="properties">Свойства</string>
+    <string name="file_options">Опции файла: %s</string>
+    <string name="name">Имя</string>
+    <string name="path">Путь</string>
+    <string name="type">Тип</string>
+    <string name="size">Размер</string>
+    <string name="modified">Изменен</string>
+    <string name="extension">Расширение</string>
+    <string name="contents">Содержимое</string>
+    <string name="search">Поиск</string>
+    <string name="home">Домой</string>
+    <string name="back">Назад</string>
+    <string name="refresh">Обновить</string>
+    <string name="menu">Меню</string>
+</resources>

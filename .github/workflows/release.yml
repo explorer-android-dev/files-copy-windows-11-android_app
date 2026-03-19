@@ -1,0 +1,78 @@
+name: Create Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  create-release:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Set up JDK 11
+      uses: actions/setup-java@v3
+      with:
+        java-version: '11'
+        distribution: 'temurin'
+        
+    - name: Cache Gradle packages
+      uses: actions/cache@v3
+      with:
+        path: |
+          ~/.gradle/caches
+          ~/.gradle/wrapper
+        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+        restore-keys: |
+          ${{ runner.os }}-gradle-
+          
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
+      
+    - name: Build release APK
+      run: ./gradlew assembleRelease
+      
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Файлы v${{ github.ref_name }}
+        body: |
+          ## 🚀 Новая версия Файлы - Копия проводника Windows 11
+          
+          ### 📱 Что нового:
+          - Обновленная версия приложения
+          - Исправления ошибок
+          - Улучшения производительности
+          
+          ### 📥 Как установить:
+          1. Скачайте APK файл ниже
+          2. Разрешите установку из неизвестных источников
+          3. Установите приложение
+          
+          ### 🔧 Требования:
+          - Android 7.0+ (API 24+)
+          - Разрешения на доступ к хранилищу
+          
+          ---
+          **Версия**: ${{ github.ref_name }}
+          **Сборка**: ${{ github.sha }}
+          **Дата**: ${{ github.event.head_commit.timestamp }}
+        draft: false
+        prerelease: false
+        
+    - name: Upload Release Asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: app/build/outputs/apk/release/app-release.apk
+        asset_name: Файлы-${{ github.ref_name }}.apk
+        asset_content_type: application/vnd.android.package-archive
