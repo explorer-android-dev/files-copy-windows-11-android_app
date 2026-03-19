@@ -1,27 +1,30 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+    <!-- Base application theme for Light Mode -->
     <style name="Theme.Windows11Files" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- Primary brand color. -->
+        <!-- Primary brand color (Windows Blue) -->
         <item name="colorPrimary">#0078D4</item>
         <item name="colorPrimaryVariant">#106EBE</item>
         <item name="colorOnPrimary">#FFFFFF</item>
-        <!-- Secondary brand color. -->
+        <!-- Secondary brand color -->
         <item name="colorSecondary">#0078D4</item>
         <item name="colorSecondaryVariant">#106EBE</item>
         <item name="colorOnSecondary">#FFFFFF</item>
-        <!-- Tertiary color -->
+        <!-- Tertiary colors -->
         <item name="colorTertiary">#0078D4</item>
         <item name="colorTertiaryContainer">#DCE2FF</item>
         <item name="colorOnTertiaryContainer">#001947</item>
-        <!-- Light mode colors -->
+        <!-- Light mode surfaces -->
         <item name="android:colorBackground">#FFFFFF</item>
         <item name="colorSurface">#FFFFFF</item>
         <item name="colorOnSurface">#1F1F1F</item>
-        <item name="colorError">#B3261E</item>
-        <!-- Status bar and navigation colors -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="colorOnSurfaceVariant">#49454E</item>
+        <!-- Status bar and navigation (light mode) -->
+        <item name="android:statusBarColor" tools:targetApi="l">#106EBE</item>
         <item name="android:navigationBarColor">#F3F3F3</item>
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:windowLightNavigationBar">true</item>
+        <!-- Error colors -->
+        <item name="colorError">#B3261E</item>
+        <item name="colorOnError">#FFFFFF</item>
     </style>
 </resources>

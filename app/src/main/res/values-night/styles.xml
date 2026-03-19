@@ -1,28 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Dark theme for night mode (Dark Mica design) -->
+    <!-- Dark theme for night mode (Mica Dark Design - Windows 11) -->
     <style name="Theme.Windows11Files" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- Primary brand color. -->
+        <!-- Primary brand color (Windows Blue) -->
         <item name="colorPrimary">#0078D4</item>
-        <item name="colorPrimaryVariant">#106EBE</item>
+        <item name="colorPrimaryVariant">#0066A1</item>
         <item name="colorOnPrimary">#FFFFFF</item>
-        <!-- Secondary brand color. -->
+        <!-- Secondary brand color -->
         <item name="colorSecondary">#0078D4</item>
-        <item name="colorSecondaryVariant">#106EBE</item>
+        <item name="colorSecondaryVariant">#0066A1</item>
         <item name="colorOnSecondary">#FFFFFF</item>
-        <!-- Tertiary color -->
-        <item name="colorTertiary">#0078D4</item>
-        <item name="colorTertiaryContainer">#DCE2FF</item>
-        <item name="colorOnTertiaryContainer">#001947</item>
-        <!-- Dark mode colors (Dark Mica theme) -->
-        <item name="android:colorBackground">#1E1E1E</item>
-        <item name="colorSurface">#2D2D2D</item>
+        <!-- Tertiary colors -->
+        <item name="colorTertiary">#5AB7FF</item>
+        <item name="colorTertiaryContainer">#004B8F</item>
+        <item name="colorOnTertiaryContainer">#DCE2FF</item>
+        <!-- Dark mode surfaces (Dark Mica #1C1C1C) -->
+        <item name="android:colorBackground">#1C1C1C</item>
+        <item name="colorSurface">#2B2B2B</item>
         <item name="colorOnSurface">#FFFFFF</item>
-        <item name="colorError">#F2B8B5</item>
-        <!-- Status bar and navigation colors for dark mode -->
-        <item name="android:statusBarColor" tools:targetApi="l">#1E1E1E</item>
-        <item name="android:navigationBarColor">#2D2D2D</item>
+        <item name="colorOnSurfaceVariant">#CAC7D0</item>
+        <!-- Status bar and navigation (dark mode) -->
+        <item name="android:statusBarColor" tools:targetApi="l">#1C1C1C</item>
+        <item name="android:navigationBarColor">#2B2B2B</item>
         <item name="android:windowLightStatusBar">false</item>
         <item name="android:windowLightNavigationBar">false</item>
+        <!-- Error colors (adjusted for dark background) -->
+        <item name="colorError">#F2B8B5</item>
+        <item name="colorOnError">#601410</item>
+        <!-- Additional Mica Dark properties -->
+        <item name="colorErrorContainer">#8C1D18</item>
+        <item name="colorOnErrorContainer">#F9DEDC</item>
     </style>
 </resources>

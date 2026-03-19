@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Файлы</string>
+    <string name="app_name">Проводник</string>
     <string name="permission_required">Требуются разрешения для доступа к файлам</string>
     <string name="permission_denied">Разрешения не предоставлены</string>
     <string name="folder">Папка</string>
