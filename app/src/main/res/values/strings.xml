@@ -4,7 +4,7 @@
     <string name="permission_denied">Разрешения не предоставлены</string>
     <string name="folder">Папка</string>
     <string name="file">Файл</string>
-    <string name="delete_confirmation">Вы уверены, что хотите удалить %s \"%s\"?</string>
+    <string name="delete_confirmation">Вы уверены?</string>
     <string name="delete">Удалить</string>
     <string name="cancel">Отмена</string>
     <string name="open">Открыть</string>
