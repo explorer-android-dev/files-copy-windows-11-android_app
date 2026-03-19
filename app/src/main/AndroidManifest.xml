@@ -16,6 +16,7 @@
         android:roundIcon="@drawable/ic_folder"
         android:supportsRtl="true"
         android:theme="@style/Theme.Windows11Files"
+        android:requestLegacyExternalStorage="true"
         tools:targetApi="31">
         
         <provider

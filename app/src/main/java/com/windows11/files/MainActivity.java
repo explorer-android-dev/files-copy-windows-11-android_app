@@ -2,10 +2,13 @@ package com.windows11.files;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.Settings;
 import android.text.InputType;
 import android.view.View;
 import android.widget.EditText;
@@ -177,10 +180,20 @@ public class MainActivity extends AppCompatActivity implements
     
     private void requestPermissions() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            ActivityCompat.requestPermissions(this, 
-                new String[]{Manifest.permission.MANAGE_EXTERNAL_STORAGE}, 
-                PERMISSION_REQUEST_CODE);
+            // Android 11+ requires explicit MANAGE_EXTERNAL_STORAGE permission via Settings
+            if (!Environment.isExternalStorageManager()) {
+                Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
+                intent.addCategory("android.intent.category.DEFAULT");
+                intent.setData(Uri.parse("package:" + getPackageName()));
+                try {
+                    startActivity(intent);
+                } catch (Exception e) {
+                    // Fallback: show dialog with instructions
+                    showPermissionDialog();
+                }
+            }
         } else {
+            // Android 10 and below
             ActivityCompat.requestPermissions(this, 
                 new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 
                 PERMISSION_REQUEST_CODE);
@@ -195,8 +208,31 @@ public class MainActivity extends AppCompatActivity implements
                 loadDirectory(Environment.getExternalStorageDirectory());
             } else {
                 Toast.makeText(this, R.string.permission_required, Toast.LENGTH_LONG).show();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                    showPermissionDialog();
+                }
             }
         }
+    }
+    
+    private void showPermissionDialog() {
+        new AlertDialog.Builder(this)
+                .setTitle("Требуется доступ к файлам")
+                .setMessage("Приложению требуется доступ ко всем файлам на устройстве.\\n\\nПожалуйста, разрешите это в настройках.")
+                .setPositiveButton("Открыть настройки", (dialog, which) -> {
+                    Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
+                    intent.addCategory("android.intent.category.DEFAULT");
+                    intent.setData(Uri.parse("package:" + getPackageName()));
+                    try {
+                        startActivity(intent);
+                    } catch (Exception e) {
+                        // Fallback to all apps settings
+                        startActivity(new Intent(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION));
+                    }
+                })
+                .setNegativeButton("Отмена", (dialog, which) -> finish())
+                .setCancelable(false)
+                .show();
     }
     
     private void loadDirectory(File directory) {

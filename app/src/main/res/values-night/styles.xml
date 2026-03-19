@@ -1,5 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+    <!-- Dark theme for night mode (Dark Mica design) -->
     <style name="Theme.Windows11Files" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">#0078D4</item>
@@ -13,15 +14,15 @@
         <item name="colorTertiary">#0078D4</item>
         <item name="colorTertiaryContainer">#DCE2FF</item>
         <item name="colorOnTertiaryContainer">#001947</item>
-        <!-- Light mode colors -->
-        <item name="android:colorBackground">#FFFFFF</item>
-        <item name="colorSurface">#FFFFFF</item>
-        <item name="colorOnSurface">#1F1F1F</item>
-        <item name="colorError">#B3261E</item>
-        <!-- Status bar and navigation colors -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-        <item name="android:navigationBarColor">#F3F3F3</item>
-        <item name="android:windowLightStatusBar">true</item>
-        <item name="android:windowLightNavigationBar">true</item>
+        <!-- Dark mode colors (Dark Mica theme) -->
+        <item name="android:colorBackground">#1E1E1E</item>
+        <item name="colorSurface">#2D2D2D</item>
+        <item name="colorOnSurface">#FFFFFF</item>
+        <item name="colorError">#F2B8B5</item>
+        <!-- Status bar and navigation colors for dark mode -->
+        <item name="android:statusBarColor" tools:targetApi="l">#1E1E1E</item>
+        <item name="android:navigationBarColor">#2D2D2D</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
     </style>
 </resources>
